@@ -89,6 +89,30 @@
 
   <script>
     const btnNo = document.getElementById("btnNo");
+    btnNo.addEventListener("mouseenter", pindahTombol);
+    btnNo.addEventListener("touchstart", pindahTombol);
+
+    function pindahTombol() {
+      const offset = 700;
+
+      const btnWidth = btnNo.offsetWidth;
+      const btnHeight = btnNo.offsetHeight;
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      let newX = btnNo.offsetLeft + (Math.random() * offset - offset / 2);
+      let newY = btnNo.offsetTop + (Math.random() * offset - offset / 2);
+
+      if (newX < 0) newX = 10;
+      if (newX + btnWidth > screenWidth) newX = screenWidth - btnWidth - 10;
+
+      if (newY < 0) newY = 10;
+      if (newY + btnHeight > screenHeight) newY = screenHeight - btnHeight - 10;
+
+      btnNo.style.left = `${newX}px`;
+      btnNo.style.top = `${newY}px`;
+    }
 
     function jawabIya() {
       alert("Yeaay!! Ayoo aku jemput kamu");
