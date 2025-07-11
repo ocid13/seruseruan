@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Heyy Fanisa</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #ffd3a5, #fd6585);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: popUp 0.5s ease-out;
+      max-width: 90%;
+    }
+
+    @keyframes popUp {
+      from {
+        transform: scale(0.2);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .emoji {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      margin: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .btn-yes {
+      background: #4caf50;
+      color: white;
+    }
+
+    .btn-no {
+      background: #f44336;
+      color: white;
+      position: absolute;
+      left: 30px;
+      top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="popup">
+    <div class="emoji">🚗💨</div>
+    <h1>Fanisa mau jalan bareng gak?</h1>
+    <button class="btn btn-yes" onclick="jawabIya()">Mau banget!</button>
+  </div>
+
+  <button class="btn btn-no" id="btnNo">Enggak</button>
+
+  <script>
+    const btnNo = document.getElementById("btnNo");
+
+    function jawabIya() {
+      alert("Yeaay!! Ayoo aku jemput kamu Fanisa");
+    }
+
+    btnNo.addEventListener("mouseenter", () => {
+      const offset = 700;
+
+      const btnWidth = btnNo.offsetWidth;
+      const btnHeight = btnNo.offsetHeight;
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      // Hitung posisi acak tapi aman di viewport
+      let newX = btnNo.offsetLeft + (Math.random() * offset - offset / 2);
+      let newY = btnNo.offsetTop + (Math.random() * offset - offset / 2);
+
+      // Batas kiri dan kanan
+      if (newX < 0) newX = 10;
+      if (newX + btnWidth > screenWidth) newX = screenWidth - btnWidth - 10;
+
+      // Batas atas dan bawah
+      if (newY < 0) newY = 10;
+      if (newY + btnHeight > screenHeight) newY = screenHeight - btnHeight - 10;
+
+      // Terapkan posisi baru
+      btnNo.style.left = `${newX}px`;
+      btnNo.style.top = `${newY}px`;
+    });
+  </script>
+
+</body>
+</html>
